@@ -4,13 +4,13 @@ import java.time.format.DateTimeFormatter;
 public class Pessoa {
 
     protected String nome;
-    protected LocalDate dtNascimento;
+    protected LocalDate dataNascimento;
 
 
 
-    public Pessoa(String nome, LocalDate dtNascimento) {
+    public Pessoa(String nome, LocalDate dataNascimento) {
         this.nome = nome;
-        this.dtNascimento = dtNascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     public Pessoa() {
@@ -24,11 +24,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public LocalDate getDtNascimento() {
-        return dtNascimento;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDtNascimento(LocalDate dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

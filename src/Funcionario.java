@@ -52,10 +52,10 @@ public class Funcionario extends Pessoa{
         DecimalFormat formatter = new DecimalFormat("#,##0.00", simbolo);
 
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        var dtformatada = dtNascimento.format(formatterData);
+        var dtformatada = dataNascimento.format(formatterData);
         return
                 "nome='" + nome + '\'' +
-                ", dtNascimento=" + dtformatada +
+                ", dataNascimento=" + dtformatada +
                 ", salario=" + formatter.format(salario) +
                 ", funcao='" + funcao + '\'';
     }

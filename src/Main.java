@@ -80,16 +80,16 @@ public class Main {
         // Funcionários que fazem aniversário no mês 10 e 12.
         System.out.println("Aniversáriantes no mês 10 e 12\n");
         funcionarios.stream().filter(f -> {
-                    int mes = f.getDtNascimento().getMonthValue();
+                    int mes = f.getDataNascimento().getMonthValue();
                     return mes == 10 || mes == 12;
                 }).forEach(System.out::println);
 
         System.out.println("\n3.9 - ===---====---===---===---===---===---===---===---==\n");
         System.out.println("Funcionário com a maior idade...");
 
-        var funcionario = funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento)).orElse(null);
+        var funcionario = funcionarios.stream().min(Comparator.comparing(Funcionario::getDataNascimento)).orElse(null);
         if(funcionario != null){
-            int idade = Period.between(funcionario.getDtNascimento(), LocalDate.now()).getYears();
+            int idade = Period.between(funcionario.getDataNascimento(), LocalDate.now()).getYears();
             System.out.println("Nome: " + funcionario.getNome() +
                     "\nIdade: " + idade + " anos");
         }
