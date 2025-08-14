@@ -5,6 +5,7 @@ import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,7 +76,14 @@ public class Main {
                 }).forEach(System.out::println);
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("Funcionário com a maior idade:");
 
+        var funcionario = funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento)).orElse(null);
+        if(funcionario != null){
+            int idade = Period.between(funcionario.getDtNascimento(), LocalDate.now()).getYears();
+            System.out.println("Nome: " + funcionario.getNome() +
+                    "\nIdade: " + idade + " anos");
+        }
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
 
