@@ -46,7 +46,7 @@ public class Main {
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
 
-        System.out.println("Mostra todos os funcionários...");
+        System.out.println("Mostra todos os funcionários...\n");
         funcionarios.forEach(System.out::println);
 
 
@@ -69,14 +69,14 @@ public class Main {
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
         // Funcionários que fazem aniversário no mês 10 e 12.
-        System.out.println("Aniversáriantes no mês 10 e 12");
+        System.out.println("Aniversáriantes no mês 10 e 12\n");
         funcionarios.stream().filter(f -> {
                     int mes = f.getDtNascimento().getMonthValue();
                     return mes == 10 || mes == 12;
                 }).forEach(System.out::println);
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
-        System.out.println("Funcionário com a maior idade:");
+        System.out.println("Funcionário com a maior idade...");
 
         var funcionario = funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento)).orElse(null);
         if(funcionario != null){
@@ -86,6 +86,14 @@ public class Main {
         }
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+        // Ordena a lista de Funcionários pelo nome
+        System.out.println("Ordenando a lista pelo nome...\n");
+        funcionarios.stream().sorted(Comparator.comparing(Funcionario::getNome)).forEach(System.out::println);
+
+
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
 
         System.out.println("FIM DO PROGRAMA...");
 
