@@ -20,6 +20,8 @@ public class Main {
         simbolo.setGroupingSeparator(',');
         DecimalFormat formatter = new DecimalFormat("#,##0.00", simbolo);
 
+        System.out.println("\n3.1 - ===---====---===---===---===---===---===---===---==\n");
+
         // Criando objetos e inserindo na lista
         Funcionario maria = new Funcionario("Maria", LocalDate.of(2000, 10, 18), BigDecimal.valueOf(2009.04), "Operador");
         funcionarios.add(maria);
@@ -41,28 +43,30 @@ public class Main {
         funcionarios.add(heloisa);
         Funcionario elena = new Funcionario("Helena", LocalDate.of(1996, 9, 2), BigDecimal.valueOf(2799.93), "Gerente");
         funcionarios.add(elena);
-        System.out.println("\nINICIANDO...");
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+        System.out.println("INICIANDO..." + "\nFuncionários sendo inseridos...");
+
+        System.out.println("\n3.2 - ===---====---===---===---===---===---===---===---==\n");
 
         // Remove o funcionario "João" da lista de funcionários
         System.out.println("Removendo 'João'");
         funcionarios.removeIf(f -> f.getNome().equalsIgnoreCase("João"));
 
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.3 - ===---====---===---===---===---===---===---===---==\n");
 
         System.out.println("Mostra todos os funcionários...\n");
         funcionarios.forEach(System.out::println);
 
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.4 - ===---====---===---===---===---===---===---===---==\n");
         // Aumento de 10% do salário dos funcionários
         System.out.println("Aumentando o salário...");
         BigDecimal percentual = new BigDecimal("0.10");
         funcionarios.forEach(f -> f.aumento(percentual, f.getSalario()));
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
-        System.out.println("Agrupando funcionários...\n");
+        System.out.println("\n3.5 / 3.6- ===---====---===---===---===---===---===---===---==\n");
+        System.out.println("Agrupando funcionários por função...\n");
         // Método para agrupar funcionários por função
         Map<String, List<Funcionario>> agruparPorFuncao = funcionarios.stream().collect(Collectors.groupingBy(Funcionario::getFuncao));
 
@@ -72,7 +76,7 @@ public class Main {
             lista.forEach(System.out::println);
         });
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.8 - ===---====---===---===---===---===---===---===---==\n");
         // Funcionários que fazem aniversário no mês 10 e 12.
         System.out.println("Aniversáriantes no mês 10 e 12\n");
         funcionarios.stream().filter(f -> {
@@ -80,7 +84,7 @@ public class Main {
                     return mes == 10 || mes == 12;
                 }).forEach(System.out::println);
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.9 - ===---====---===---===---===---===---===---===---==\n");
         System.out.println("Funcionário com a maior idade...");
 
         var funcionario = funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento)).orElse(null);
@@ -90,14 +94,14 @@ public class Main {
                     "\nIdade: " + idade + " anos");
         }
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.10 - ===---====---===---===---===---===---===---===---==\n");
 
         // Ordena a lista de Funcionários pelo nome
         System.out.println("Ordenando a lista pelo nome...\n");
         funcionarios.stream().sorted(Comparator.comparing(Funcionario::getNome)).forEach(System.out::println);
 
 
-        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("\n3.11 - ===---====---===---===---===---===---===---===---==\n");
 
         // Total do salário dos funcionários
         System.out.println("Somando salários de todos os funcionários...\n");
@@ -105,9 +109,18 @@ public class Main {
 
         System.out.println("Total: " + formatter.format(somaTotal) + " Reais");
 
+        System.out.println("\n3.12 - ===---====---===---===---===---===---===---===---==\n");
+
+        // Quantidade de salários mínimos por funcionário
+        System.out.println("Processando a quantidade salário mínimos cada funcionário recebe...\n");
+        BigDecimal salarioMinimo = BigDecimal.valueOf(1212.00);
+
+        funcionarios.forEach(f -> {
+            BigDecimal qtd = f.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP);
+            System.out.println(f.getNome() + " ganha " + qtd + " salários mínimos");
+        });
+
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
-
-
 
         System.out.println("FIM DO PROGRAMA...");
 
