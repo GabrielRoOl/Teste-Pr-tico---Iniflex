@@ -15,6 +15,11 @@ public class Main {
     public static void main(String[] args) {
         List<Funcionario> funcionarios = new ArrayList<>();
 
+        DecimalFormatSymbols simbolo = new DecimalFormatSymbols(new Locale("pt", "BR"));
+        simbolo.setDecimalSeparator('.');
+        simbolo.setGroupingSeparator(',');
+        DecimalFormat formatter = new DecimalFormat("#,##0.00", simbolo);
+
         // Criando objetos e inserindo na lista
         Funcionario maria = new Funcionario("Maria", LocalDate.of(2000, 10, 18), BigDecimal.valueOf(2009.04), "Operador");
         funcionarios.add(maria);
@@ -93,6 +98,15 @@ public class Main {
 
 
         System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+        // Total do salário dos funcionários
+        System.out.println("Somando salários de todos os funcionários...\n");
+        var somaTotal = funcionarios.stream().map(Funcionario::getSalario).reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        System.out.println("Total: " + formatter.format(somaTotal) + " Reais");
+
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
 
 
         System.out.println("FIM DO PROGRAMA...");
