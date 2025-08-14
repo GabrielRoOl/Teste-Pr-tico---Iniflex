@@ -14,9 +14,6 @@ public class Main {
     public static void main(String[] args) {
         List<Funcionario> funcionarios = new ArrayList<>();
 
-
-
-
         // Criando objetos e inserindo na lista
         Funcionario maria = new Funcionario("Maria", LocalDate.of(2000, 10, 18), BigDecimal.valueOf(2009.04), "Operador");
         funcionarios.add(maria);
@@ -38,30 +35,51 @@ public class Main {
         funcionarios.add(heloisa);
         Funcionario elena = new Funcionario("Helena", LocalDate.of(1996, 9, 2), BigDecimal.valueOf(2799.93), "Gerente");
         funcionarios.add(elena);
-
+        System.out.println("\nINICIANDO...");
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
 
         // Remove o funcionario "João" da lista de funcionários
+        System.out.println("Removendo 'João'");
         funcionarios.removeIf(f -> f.getNome().equalsIgnoreCase("João"));
 
-        // Mostra todos os funcionários
-//        funcionarios.forEach(System.out::println);
 
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+        System.out.println("Mostra todos os funcionários...");
+        funcionarios.forEach(System.out::println);
+
+
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
         // Aumento de 10% do salário dos funcionários
+        System.out.println("Aumentando o salário...");
         BigDecimal percentual = new BigDecimal("0.10");
         funcionarios.forEach(f -> f.aumento(percentual, f.getSalario()));
 
-        funcionarios.forEach(System.out::println);
-
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        System.out.println("Agrupando funcionários...\n");
         // Método para agrupar funcionários por função
         Map<String, List<Funcionario>> agruparPorFuncao = funcionarios.stream().collect(Collectors.groupingBy(Funcionario::getFuncao));
 
-
         agruparPorFuncao.forEach((funcao, lista) -> {
-            System.out.println("\nFunção: " + funcao);
+            System.out.println("Função: " + funcao);
             System.out.println("Funcionários: ");
             lista.forEach(System.out::println);
         });
 
-    }
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+        // Funcionários que fazem aniversário no mês 10 e 12.
+        System.out.println("Aniversáriantes no mês 10 e 12");
+        funcionarios.stream().filter(f -> {
+                    int mes = f.getDtNascimento().getMonthValue();
+                    return mes == 10 || mes == 12;
+                }).forEach(System.out::println);
 
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+
+        System.out.println("\n===---====---===---===---===---===---===---===---==\n");
+
+        System.out.println("FIM DO PROGRAMA...");
+
+    }
 }
